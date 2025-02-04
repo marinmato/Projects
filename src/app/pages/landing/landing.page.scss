@@ -1,0 +1,62 @@
+/*******************************
+ * Overall layout
+ *******************************/
+ ion-content {
+    /* Light gradient or just white—your call */
+    --background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  /*******************************
+   * Container & elements
+   *******************************/
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 1.5rem;
+    /* push it down a bit from the very top */
+    margin-top: 3rem;
+  }
+  
+  /* Car image: make it a bit lower so it pairs nicely with the button */
+  ion-img {
+    width: 240px;
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+  
+  /*******************************
+   * Title text
+   *******************************/
+  ion-title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4B9CD3; /* UNC Blue */
+    margin-bottom: 1.5rem;
+  }
+  
+  /*******************************
+   * "Get Started" Button
+   *******************************/
+  .get-started-btn {
+    --background: #4B9CD3; /* UNC Blue */
+    color: #ffffff;
+    font-weight: 600;
+    /* Subtle button shape */
+    border-radius: 24px;
+  
+    /* Extra spacing below, so it’s not too low */
+    margin-bottom: 2rem;
+  
+    /* Optional: add box-shadow for depth */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  

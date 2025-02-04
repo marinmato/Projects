@@ -1,0 +1,132 @@
+/***************************************
+ * Overall layout
+ ***************************************/
+ ion-content {
+    --background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+  }
+  
+  /***************************************
+   * Header area
+   ***************************************/
+  .header {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4B9CD3; /* UNC Blue */
+      margin-bottom: 0.5rem;
+    }
+  
+    .subTitle {
+      color: #666;
+      font-size: 0.95rem;
+    }
+  }
+  
+  /***************************************
+   * The "card" form container
+   ***************************************/
+  form {
+    /* Center the card horizontally */
+    margin: 0 auto;
+  
+    width: 90%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  
+    .ion-padding {
+      margin: 0; /* We handle spacing in the card */
+    }
+  }
+  
+  /***************************************
+   * Ion-items and inputs
+   ***************************************/
+  ion-item {
+    --background: #f2f2f2;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  
+    /* Slightly more spacious input area */
+    --inner-padding-start: 14px;
+    --inner-padding-end: 14px;
+    --padding-start: 0;
+    --padding-end: 0;
+  
+    ion-icon {
+      color: #999; 
+    }
+  
+    ion-input {
+      color: #333;
+      font-size: 1rem;
+    }
+  }
+  
+  .input {
+    font-size: 1rem;
+  }
+  
+  /***************************************
+   * Forgot Password & Signup Link
+   ***************************************/
+  .forgotpassword {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  
+    a {
+      font-size: 0.85rem;
+      color: #4B9CD3;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .signupLink {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  
+    p {
+      font-size: 0.9rem;
+      color: #666;
+  
+      a {
+        color: #4B9CD3;
+        font-weight: 600;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  /***************************************
+   * FAB button (bottom right)
+   ***************************************/
+  ion-fab-button {
+    --background: #4B9CD3;  /* UNC Blue */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+    ion-icon {
+      color: #ffffff;
+    }
+  }
+  
