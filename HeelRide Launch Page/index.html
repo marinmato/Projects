@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeelRide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>HeelRide</h1>
+    </div>
+    <div class="container">
+        <h1>Rides to <span class="auto-type"></span></h1>
+        <p>A new way to find a ride home</p>
+
+        <!-- Email Form -->
+        <form id="emailForm">
+            <input type="email" id="emailInput" name="emailInput" placeholder="Enter your email" required>
+            <button type="submit" id="saveButton">Join</button>
+        </form>
+
+        <button type="button" class='btn' onclick="openPopup()">Learn More</button>
+
+        <div class="popup" id="popup">
+            <h2>What is HeelRide?</h2>
+            <p>Welcome to HeelRide, the ultimate destination for students seeking budget-friendly transportation options in the Chapel Hill area. 
+                Our innovative platform is designed with the student budget in mind, offering a comprehensive solution to find the most affordable rides around town. 
+                Whether you're heading to class, a part-time job, or a social event, HeelRide connects you with the lowest fare options available.</p>
+            <button type='button' id="doneButton" onclick="closePopup()">DONE</button>    
+        </div>
+    </div>
+
+    <!-- Typed.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+        
+    <script>
+        var typed = new Typed(".auto-type", {
+            strings: ["New York", "Charlotte", "Washington DC", "Richmond", "Atlanta", "Baltimore", "Philadelphia"],
+            typeSpeed: 150,
+            backSpeed: 100,
+            loop: true
+        }); 
+    </script>
+
+    <!-- Popup Script -->
+    <script>
+        let popup = document.getElementById("popup");
+
+        function openPopup(){
+            popup.classList.add("open-popup");
+        }
+
+        function closePopup(){
+            popup.classList.remove("open-popup");
+        }
+    </script>
+
+    <!-- Firebase SDK and Initialization -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjvNCJLaa7u21omi9PG93XW68SRpMNzCo",
+            authDomain: "heelridefr.firebaseapp.com",
+            projectId: "heelridefr",
+            storageBucket: "heelridefr.firebasestorage.app",
+            messagingSenderId: "676204071426",
+            appId: "1:676204071426:web:6e62b2b37deadf5387751b",
+            measurementId: "G-NV182X3T6K"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Form Handling
+        const emailForm = document.getElementById('emailForm');
+        const emailInput = document.getElementById('emailInput');
+
+        emailForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get the email value
+            const email = emailInput.value.trim();
+
+            // Validate the email
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Save the email to Firebase
+            saveEmail(email);
+        });
+
+        // Function to save email to Firebase
+        function saveEmail(email) {
+            const emailsRef = ref(database, 'emails');
+
+            // Push a new email entry to the database
+            const newEmailRef = push(emailsRef);
+            set(newEmailRef, {
+                email: email,
+                timestamp: Date.now()
+            })
+            .then(() => {
+                // Data saved successfully!
+                alert('Thank you for signing up!');
+                // Clear the input field
+                emailInput.value = '';
+            })
+            .catch((error) => {
+                // The write failed...
+                alert('An error occurred. Please try again.');
+                console.error('Error saving email:', error);
+            });
+        }
+
+        // Function to validate email format
+        function validateEmail(email) {
+            // Simple regex for email validation
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email.toLowerCase());
+        }
+    </script>
+</body>
+</html>
